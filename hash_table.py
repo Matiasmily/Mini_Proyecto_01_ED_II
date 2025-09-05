@@ -1,3 +1,6 @@
+RESET   = "\033[0m"
+RED     = "\033[31m"
+
 class HashTable:
     def __init__(self, size):
         self.__size = size
@@ -20,7 +23,7 @@ class HashTable:
                 return
             index = (index + 1) % self.__size
             if index == start_index:
-                raise ValueError("Tabla Llena")
+                raise ValueError(RED + "\nTabla Llena" + RESET)
         self.__table[index] = (ip, interface)
 
     def search_route(self, ip):
