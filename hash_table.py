@@ -48,4 +48,4 @@ class HashTable:
 
     def show_table(self):
         for i, entry in enumerate(self.__table):
-            print(f("Índice {i}: {entry}"))
+            print(f"Índice {i}: {entry}")
