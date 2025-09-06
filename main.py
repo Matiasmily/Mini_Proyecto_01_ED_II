@@ -13,6 +13,14 @@ WHITE   = "\033[37m"
 
 hash_table = HashTable(5)
 
+def solicitar_dato(campo):
+    while True:
+        valor = input(f"Ingresar {campo}: ").strip()
+        if valor:
+            return valor
+        else:
+            print(RED + f"\nERROR: Debe ingresar un valor para {campo}" + RESET)
+
 def show_menu():
     while True:
         clear()
@@ -29,8 +37,8 @@ def show_menu():
             case "1":
                 clear()
                 Mensajes.agregar_ip()
-                route = input("\nIngresar IP: ")
-                interface = input("Ingresar interfaz: ")
+                route = solicitar_dato("IP")
+                interface = solicitar_dato("interfaz")
                 hash_table.add_route(route, interface)
                 print(YELLOW + "\nTabla después de agregar IP: \n" + RESET)
                 hash_table.show_table()
@@ -39,28 +47,28 @@ def show_menu():
             case "2":
                 clear()
                 Mensajes.buscar_ip()
-                route = input("\nIngresar IP: ")
+                route = solicitar_dato("IP")
                 result = hash_table.search_route(route)
                 if result:
-                    print(f"\nLa IP {route} está en la interfaz {result}")
+                    print(GREEN + f"\n✔ La IP {route} está en la interfaz {result}" + RESET)
                 else:
-                    print(f"\nLa IP {route} no se encontró en la tabla")
+                    print(RED + f"\n✖ La IP {route} no se encontró en la tabla" + RESET)
                 input(CYAN + "\nPresione Enter para continuar" + RESET)
 
             case "3":
                 clear()
                 Mensajes.actualizar_ip()
-                route = input("\nIngresar IP: ")
-                interface = input("Ingresar interfaz: ")
+                route = solicitar_dato("IP")
+                interface = solicitar_dato("interfaz")
                 hash_table.add_route(route, interface)
-                print(YELLOW + "\nTabla después de actualizar IP: \n"+ RESET)
+                print(YELLOW + "\nTabla después de actualizar IP: \n" + RESET)
                 hash_table.show_table()
                 input(CYAN + "\nPresione Enter para continuar" + RESET)
 
             case "4":
                 clear()
                 Mensajes.eliminar_ip()
-                route = input("\nIngresar IP: ")
+                route = solicitar_dato("IP")
                 hash_table.delete_route(route)
                 print(YELLOW + "\nTabla después de eliminar IP: \n" + RESET)
                 hash_table.show_table()
